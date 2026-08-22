@@ -58,34 +58,45 @@ body {
     overflow: hidden;
 }
 
-/* Diamond Pendant Ring */
-.sun {
+/* Sparkling Diamond Necklace */
+.necklace {
     position: absolute;
-    top: -30px; right: 10%;
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    background: conic-gradient(
-        #f8f4e3 0deg, #d4af37 90deg, #fffbe6 180deg,
-        #b8860b 270deg, #f8f4e3 360deg
-    );
-    -webkit-mask: radial-gradient(circle, transparent 35%, black 36%, black 47%, transparent 48%);
-    mask: radial-gradient(circle, transparent 35%, black 36%, black 47%, transparent 48%);
-    box-shadow: 0 0 60px 20px rgba(212,175,55,0.35), 0 0 120px 40px rgba(142,166,255,0.18);
-    animation: sunRise 3s ease-out both, spinRays 20s linear infinite;
+    top: -14px; right: calc(10% - 8px);
+    width: 215px; height: 215px;
+    pointer-events: none;
+    animation: sunRise 3s ease-out both;
+    filter: drop-shadow(0 0 10px rgba(212,175,55,0.55)) drop-shadow(0 0 28px rgba(142,166,255,0.35));
 }
-@keyframes sunRise {
-    from { transform: translateY(70px) rotate(0deg); opacity: 0; }
-    to   { transform: translateY(0) rotate(0deg);    opacity: 1; }
+.necklace svg { width: 100%; height: 100%; overflow: visible; }
+
+.pendant-sway {
+    transform-box: fill-box;
+    transform-origin: 50% 0%;
+    animation: pendantSway 4.5s ease-in-out infinite alternate;
+}
+@keyframes pendantSway {
+    from { transform: rotate(-7deg); }
+    to   { transform: rotate(7deg); }
 }
 
-.sun-rays {
+.sparkle {
     position: absolute;
-    top: -55px; right: calc(10% - 25px);
-    width: 250px; height: 250px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(251,191,36,0.12) 0%, transparent 70%);
-    animation: sunRise 3s ease-out both;
+    color: #fffbe6;
+    text-shadow: 0 0 6px #fff, 0 0 12px rgba(212,175,55,0.9);
+    animation: twinkle 2.2s ease-in-out infinite;
     pointer-events: none;
+}
+.sp1 { top: 26%; left: 16%; font-size: 1.15rem; animation-delay: 0s; }
+.sp2 { top: 58%; left: 30%; font-size: 0.85rem; animation-delay: 0.5s; }
+.sp3 { top: 22%; right: 18%; font-size: 1rem;  animation-delay: 1.1s; }
+.sp4 { top: 60%; right: 28%; font-size: 0.75rem; animation-delay: 1.6s; }
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+    50%      { opacity: 1; transform: scale(1) rotate(90deg); }
+}
+@keyframes sunRise {
+    from { transform: translateY(70px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
 }
 /* Candlelight Bokeh (replacing clouds) */
 .clouds-layer { position: absolute; inset: 0; pointer-events: none; }
@@ -886,8 +897,39 @@ body {
      BACKGROUND & ASSETS
      ══════════════════════════════════ -->
 <div class="sky-bg">
-    <div class="sun"></div>
-    <div class="sun-rays"></div>
+    <div class="necklace">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+            <defs>
+                <linearGradient id="chainGold" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f8f4e3"/>
+                    <stop offset="50%" stop-color="#d4af37"/>
+                    <stop offset="100%" stop-color="#b8860b"/>
+                </linearGradient>
+                <linearGradient id="diamondIce" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="45%" stop-color="#dbe9ff"/>
+                    <stop offset="100%" stop-color="#9cc3ff"/>
+                </linearGradient>
+            </defs>
+            <!-- chain -->
+            <path d="M18 8 Q100 244 182 8" fill="none" stroke="url(#chainGold)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M18 8 Q100 244 182 8" fill="none" stroke="#fffbe6" stroke-width="1.4" stroke-dasharray="1 5" stroke-linecap="round" opacity="0.9"/>
+            <!-- bail + diamond pendant -->
+            <g class="pendant-sway">
+                <circle cx="100" cy="132" r="5" fill="none" stroke="url(#chainGold)" stroke-width="3"/>
+                <polygon points="84,142 116,142 124,154 100,190 76,154" fill="url(#diamondIce)" stroke="#7aa8e8" stroke-width="1.5" stroke-linejoin="round"/>
+                <polyline points="84,142 92,154 108,154 116,142" fill="none" stroke="#ffffff" stroke-width="1.6" opacity="0.95"/>
+                <line x1="92" y1="154" x2="100" y2="190" stroke="#ffffff" stroke-width="1.2" opacity="0.85"/>
+                <line x1="108" y1="154" x2="100" y2="190" stroke="#ffffff" stroke-width="1.2" opacity="0.85"/>
+                <line x1="76" y1="154" x2="92" y2="154" stroke="#7aa8e8" stroke-width="1.2" opacity="0.7"/>
+                <line x1="108" y1="154" x2="124" y2="154" stroke="#7aa8e8" stroke-width="1.2" opacity="0.7"/>
+            </g>
+        </svg>
+        <span class="sparkle sp1">✦</span>
+        <span class="sparkle sp2">✦</span>
+        <span class="sparkle sp3">✧</span>
+        <span class="sparkle sp4">✦</span>
+    </div>
     <div class="clouds-layer">
         <div class="cloud c1"></div>
         <div class="cloud c2"></div>
@@ -898,7 +940,7 @@ body {
 <button class="sound-btn" id="soundBtn" onclick="toggleSound()" title="Sound / 音樂切換">🔊</button>
 
 <div class="character-wrap">
-    <div style="font-size:3.4rem; filter:drop-shadow(0 0 14px rgba(212,175,55,0.75));">💎</div>
+    <img src="assets/img/j3.png" alt="Necklace Escape Guide">
 </div>
 
 <div class="overlay" id="overlay"></div>
