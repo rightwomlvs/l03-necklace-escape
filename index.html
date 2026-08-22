@@ -581,15 +581,15 @@ body {
 .rearr-chip.used { opacity: 0.35; pointer-events: none; }
 .rearr-chip.in-target { background: #fce4ec; color: #880e4f; border-color: #e94560; }
 
-/* ── Cloze Passage ── */
+/* ── Cloze Passage (light card: dark text + gold accents) ── */
 .cloze-pass {
     padding: 0.9rem 1.1rem; border-radius: 12px; margin-bottom: 1.1rem;
-    background: rgba(255,255,255,0.06); border-left: 4px solid #e94560;
-    font-size: 0.98rem; line-height: 1.8; color: #e2e8f0;
+    background: rgba(10,10,35,0.05); border-left: 4px solid #d4af37;
+    font-size: 0.98rem; line-height: 1.8; color: #1e293b;
 }
 .cloze-pass .blank {
     display: inline-block; min-width: 4.2em; text-align: center;
-    border-bottom: 2px solid #fbbf24; color: #fbbf24; font-weight: 700;
+    border-bottom: 2px solid #b8860b; color: #b8860b; font-weight: 700;
 }
 
 /* ── Type-in Question ── */
@@ -597,16 +597,16 @@ body {
 .typein-input {
     flex: 1; padding: 0.75rem 1rem; border-radius: 12px; font-size: 1rem;
     font-family: inherit; outline: none;
-    background: rgba(255,255,255,0.08); color: #f1f5f9;
-    border: 2px solid rgba(148,163,184,0.4);
+    background: #ffffff; color: #0f172a;
+    border: 2px solid rgba(148,163,184,0.45);
 }
-.typein-input:focus { border-color: #e94560; }
+.typein-input:focus { border-color: #d4af37; }
 .typein-btn {
     padding: 0.75rem 1.4rem; border-radius: 12px; border: none; cursor: pointer;
     font-weight: 700; font-size: 0.95rem; color: #fff;
-    background: linear-gradient(135deg, #e94560, #c2185b);
+    background: linear-gradient(135deg, #d4af37, #b8860b);
 }
-.typein-hint { font-size: 0.82rem; color: #94a3b8; margin-top: 0.45rem; }
+.typein-hint { font-size: 0.82rem; color: #64748b; margin-top: 0.45rem; }
 
 /* ── Wrong Answer Review (錯題本) ── */
 .review-box {
