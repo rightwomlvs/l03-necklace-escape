@@ -2190,5 +2190,26 @@ document.getElementById('nameInput').addEventListener('keydown', e => {
 });
 </script>
 
+<script>
+/* escape-room open/close gate (GitHub Pages 集中控管：讀取 115hlc3 根目錄 config.json) */
+(function(){
+  var L = "L03";
+  var ov = document.createElement("div");
+  ov.id = "gate-lock";
+  ov.style.cssText = "position:fixed;inset:0;z-index:99999;background:#f4f6fb;display:none;align-items:center;justify-content:center;";
+  ov.innerHTML = "<div style='text-align:center;font-family:sans-serif;color:#334155;padding:24px'>"
+    + "<div style='font-size:52px'>🔒</div>"
+    + "<h1 style='font-size:22px;margin:10px 0 4px'>本單元尚未開放</h1>"
+    + "<p style='color:#64748b;margin:0 0 18px'>請等待老師開放後，再重新進入。</p>"
+    + "<a href='https://rightwomlvs.github.io/115hlc3/index.html' style='display:inline-block;background:#3b5bdb;color:#fff;text-decoration:none;padding:10px 22px;border-radius:10px;font-weight:700'>返回課程總覽</a></div>";
+  document.body.appendChild(ov);
+  fetch("https://rightwomlvs.github.io/115hlc3/config.json", {cache:"no-store"}).then(function(r){
+    if(!r.ok) return null;
+    return r.json();
+  }).then(function(cfg){
+    if(cfg && cfg.escapeRooms && cfg.escapeRooms[L] === false) ov.style.display = "flex";
+  }).catch(function(){});
+})();
+</script>
 </body>
 </html>
